@@ -13,6 +13,13 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 let mapleader=" "
+set t_Co=256
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 call plug#begin("~/.vim/plugged")
 
@@ -35,8 +42,10 @@ call plug#end()
 syntax on
 set background=dark
 colorscheme solarized
+set ttyfast
+set t_ut=
 
-let g:solarized_termcolors=16
+"let g:solarized_termcolors=16
 let g:netrw_liststyle=3
 let g:rustfmt_autosave=1
 
