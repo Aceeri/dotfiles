@@ -1,5 +1,20 @@
 
 set nocompatible
+let &shell='cmd.exe'
+set rtp+=~/.vim/ " add ~/.vim/ to vim runtime (easier than using gvim's path)
+
+if has("autocmd")
+    filetype plugin indent on
+
+    " Use actual tab chars in Makefiles.
+    autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+endif
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 " settings
 set nu
@@ -9,17 +24,13 @@ set incsearch
 set wildmenu
 set ruler
 set clipboard=unnamed
-set tabstop=4
-set shiftwidth=4
-set expandtab
-let mapleader=" "
-set t_Co=256
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+" Expand tabs to 4 spaces
+set tabstop=8
+set softtabstop=0 expandtab
+set shiftwidth=4 smarttab
+
+let mapleader=' '
 
 call plug#begin("~/.vim/plugged")
 
@@ -45,6 +56,7 @@ colorscheme solarized
 set ttyfast
 set t_ut=
 
+set t_Co=256
 "let g:solarized_termcolors=16
 let g:netrw_liststyle=3
 let g:rustfmt_autosave=1
@@ -69,3 +81,4 @@ if executable("rg")
     set grepprg=rg\ --vimgrep\ --no-heading
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
+
