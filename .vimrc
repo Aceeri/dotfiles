@@ -45,6 +45,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Tooling plugins
 Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
+let NERDTreeShowHidden=1
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 
