@@ -23,7 +23,7 @@ config_rm () {
 }
 
 config_rm .vimrc
-config_rm .xinit
+config_rm .xinitrc
 config_rm .xprofile
 config_rm .bashrc
 config_rm .bash_profile
@@ -37,7 +37,7 @@ config_ln () {
 }
 
 config_ln .vimrc
-config_ln .xinit
+config_ln .xinitrc
 config_ln .xprofile
 config_ln .bashrc
 config_ln .bash_profile
