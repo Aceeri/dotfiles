@@ -42,6 +42,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'junegunn/fzf'
 
 " Tooling plugins
+Plug 'arcticicestudio/nord-vim'
 Plug 'scrooloose/nerdtree'
 let NERDTreeShowHidden=1
 Plug 'scrooloose/nerdcommenter'
