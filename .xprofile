@@ -1,2 +1,9 @@
-xrandr --output DP-2 --mode 1920x1080 --rate 240 --right-of DP-5
+xrandr --output DP-2 --primary --mode 1920x1080 --rate 240 --right-of DP-5
 xrandr --output DP-5 --mode 1920x-1080 --rate 60 --left-of DP2
+
+xrandr --output DP-0 --off
+xrandr --output DP-1 --off
+xrandr --output HDMI-0 --off
+xrandr --output DP-3 --off
+xrandr --output DP-4 --off
+xrandr --output USB-C-0 --off
