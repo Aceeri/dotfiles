@@ -1,35 +1,52 @@
 #!/bin/sh
 
-PATH_TO_PROJECTS=$HOME/projects
-PATH_TO_PLAYGROUND=$HOME/play
+DOTFILES=$HOME/dotfiles
+if [ ! -d "$DOTFILES" ]; then
+	echo "Missing dotfiles directory. Try git cloning"
+	exit
+fi
 
-# Initialize a few things
-init () {
- echo "Making a Projects folder in $PATH_TO_PROJECTS if it doesn't already exist"
- mkdir -p "$PATH_TO_PROJECTS"
- echo "Making a Playground folder in $PATH_TO_PLAYGROUND if it doesn't already exist"
- mkdir -p "$PATH_TO_PLAYGROUND"
+PROJECTS_DIR=$HOME/projects
+PLAYGROUND_DIR=$HOME/play
+
+# Initialize folders
+echo "Making a Projects folder in $PROJECTS_DIR if it doesn't already exist"
+mkdir -p "$PROJECTS_DIR"
+echo "Making a Playground folder in $PLAYGROUND_DIR if it doesn't already exist"
+mkdir -p "$PLAYGROUND_DIR"
+
+echo "Removing existing config files/folders"
+
+config_rm () {
+	echo "Removing ~/$1";
+	sudo rm -rf ~/$1 > /dev/null 2>&1
 }
 
-# TODO : Delete symlinks to deleted files
-# Is this where rsync shines?
-# TODO - add support for -f and --force
-link () {
- echo "This utility will symlink the files in this repo to the home directory"
- echo "Proceed? (y/n)"
- read resp
- # TODO - regex here?
- if [ "$resp" = 'y' -o "$resp" = 'Y' ] ; then
-  for file in $( ls -A | grep -vE '\.exclude*|\.git$|\.gitignore|.*.md|*.sh' ) ; do
-   ln -sv "$PWD/$file" "$HOME"
-  done
-  # TODO: source files here?
-  echo "Symlinking complete"
- else
-  echo "Symlinking cancelled by user"
-  return 1
- fi
+config_rm .vimrc
+config_rm .xinit
+config_rm .xprofile
+config_rm .bashrc
+config_rm .bash_profile
+config_rm .tmux.conf
+
+echo "Symlinking configs"
+
+config_ln () {
+	echo "Symlinking $DOTFILES/$1 -> ~/$1";
+	ln -sf $DOTFILES/$1 ~/$1
 }
 
-init
-link
+config_ln .vimrc
+config_ln .xinit
+config_ln .xprofile
+config_ln .bashrc
+config_ln .bash_profile
+config_ln .tmux.conf
+
+# Special case .config so it is just overwriting the configs in the repo instead of removing extras.
+for filename in $DOTFILES/.config/*; do
+	filename=$(basename $filename)
+	echo "Overwriting $filename in ~/.config"
+	config_rm .config/$filename
+	config_ln .config/$filename
+done

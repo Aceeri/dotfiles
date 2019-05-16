@@ -1,0 +1,2 @@
+xrandr --output DP-2 --mode 1920x1080 --rate 240 --right-of DP-5
+xrandr --output DP-5 --mode 1920x-1080 --rate 60 --left-of DP2
