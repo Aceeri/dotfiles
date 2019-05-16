@@ -40,10 +40,8 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Tooling plugins
-Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
 let NERDTreeShowHidden=1
 Plug 'scrooloose/nerdcommenter'
@@ -63,23 +61,8 @@ call plug#end()
 " appearance
 syntax on
 set background=dark
-colorscheme solarized
 set ttyfast
 set t_ut=
-
-"let g:solarized_termcolors=16
-"let g:netrw_liststyle=3
-"let g:rustfmt_autosave=1
-
-" syntastic settings
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
 
 " nerdtree settings
 autocmd vimenter * NERDTree
@@ -105,7 +88,5 @@ nnoremap <Leader>r :call LanguageClient#textDocument_rename()<CR>
 nnoremap <Leader>d :call LanguageClient#textDocument_definition()<CR>
 nnoremap <Leader>f :call LanguageClient#textDocument_formatting()<CR>
 nnoremap <Leader>H :call LanguageClient#textDocument_hover()<CR>
-
-"autocmd BufWritePost * :call LanguageClient#textDocument_formatting()
 
 com! FormatJSON %!python2 -m json.tool
