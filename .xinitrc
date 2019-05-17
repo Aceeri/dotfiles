@@ -39,6 +39,7 @@ fi
 
 xrandr --auto
 
+compton &
 firefox --class web &
 termite --class term &
 exec i3
