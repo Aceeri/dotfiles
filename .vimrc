@@ -26,6 +26,8 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 call plug#begin("~/.vim/plugged")
 
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 
 " Language plugins
 Plug 'rust-lang/rust.vim'
@@ -44,9 +46,9 @@ Plug 'junegunn/fzf'
 " Tooling plugins
 Plug 'arcticicestudio/nord-vim'
 Plug 'scrooloose/nerdtree'
-let NERDTreeShowHidden=1
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -67,6 +69,7 @@ set t_ut=
 
 " nerdtree settings
 autocmd vimenter * NERDTree
+let NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 
