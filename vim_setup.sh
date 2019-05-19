@@ -12,7 +12,10 @@ if [[ $( cmd_exists pacman ) ]]; then
     pacman_install python2 python3
 
     echo "Installing vim plugins"
-    vim +silent +PlugInstall +qall
+    vim +silent +PlugInstall +qall > /dev/null
+
+    echo "Installing python2 neovim plugin"
     python2 -m pip install --user --upgrade pynvim
+    echo "Installing python3 neovim plugin"
     python3 -m pip install --user --upgrade pynvim
 fi

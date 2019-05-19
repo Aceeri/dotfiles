@@ -20,7 +20,7 @@ config_ln () {
 }
 
 cmd_exists() {
-    if [[ $( type $1 ) ]]; then
+    if [[ $( type $1 > /dev/null ) ]]; then
         echo 1
     else
         echo 0
@@ -31,6 +31,6 @@ pacman_install() {
     echo "Installing $@"
     for package in "$@"
     do
-        sudo pacman -S --noconfirm $package > /dev/null
+        sudo pacman -S --needed --noconfirm $package > /dev/null
     done
 }
