@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+export TERMINAL="termite"
+
 alias ls='ls -lap --color=auto'
 PS1='[\u@\h \W]\$ '
 

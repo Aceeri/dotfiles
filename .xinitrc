@@ -40,6 +40,8 @@ fi
 xrandr --auto
 
 compton &
-firefox --class web &
-termite --class term &
+okular &
+vlc &
+firefox &
+termite --exec="tmux" &
 exec i3
