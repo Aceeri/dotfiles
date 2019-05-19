@@ -1,13 +1,6 @@
 #!/bin/sh
-
-DOTFILES=$HOME/dotfiles
-if [ ! -d "$DOTFILES" ]; then
-	echo "Missing dotfiles directory. Try git cloning"
-	exit
-fi
-
-PROJECTS_DIR=$HOME/projects
-PLAYGROUND_DIR=$HOME/play
+set -e
+source ./utils.sh
 
 # Initialize folders
 echo "Making a Projects folder in $PROJECTS_DIR if it doesn't already exist"
@@ -17,31 +10,16 @@ mkdir -p "$PLAYGROUND_DIR"
 
 echo "Removing existing config files/folders"
 
-config_rm () {
-	echo "Removing ~/$1";
-	sudo rm -rf ~/$1 > /dev/null 2>&1
-}
-
-config_rm .vimrc
 config_rm .xinitrc
 config_rm .xprofile
 config_rm .bashrc
 config_rm .bash_profile
-config_rm .tmux.conf
 
 echo "Symlinking configs"
-
-config_ln () {
-	echo "Symlinking $DOTFILES/$1 -> ~/$1";
-	ln -sf $DOTFILES/$1 ~/$1
-}
-
-config_ln .vimrc
 config_ln .xinitrc
 config_ln .xprofile
 config_ln .bashrc
 config_ln .bash_profile
-config_ln .tmux.conf
 
 # Special case .config so it is just overwriting the configs in the repo instead of removing extras.
 for filename in $DOTFILES/.config/*; do
@@ -50,3 +28,15 @@ for filename in $DOTFILES/.config/*; do
 	config_rm .config/$filename
 	config_ln .config/$filename
 done
+
+echo "Has pacman: $( cmd_exists pacman )"
+echo "Has brew (TODO: support this): $( cmd_exists brew )"
+
+echo "Setting up vim/neovim"
+./vim_setup.sh
+
+echo "Setting up tmux"
+./tmux_setup.sh
+
+echo "Misc. setup"
+./misc_setup.sh
