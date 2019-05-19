@@ -2,10 +2,13 @@
 set -e
 source ./utils.sh
 
-config_rm .tmux
-config_rm .tmuxrc
+if tmux info > /dev/null; then
+    echo "Must not be in tmux and tmux server must be killed (\`tmux kill-server\`)"
+    exit
+fi
 
-config_ln .tmuxrc
+config_rm .tmux
+config_rm_ln .tmuxrc
 
 if [[ $( cmd_exists pacman ) ]]; then
     pacman_install tmux
@@ -20,12 +23,11 @@ if [[ $( cmd_exists pacman ) ]]; then
     echo "New session"
     tmux new-session -d
 
-    #echo "Sourcing .tmux.conf"
-    #tmux source ~/.tmux.conf
+    tmux source ~/.tmux.conf
 
     echo "Install plugins with TPM"
     ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
-    echo "Kill server"
+    echo "Killing server"
     tmux kill-server
 fi

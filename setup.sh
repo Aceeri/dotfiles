@@ -8,18 +8,11 @@ mkdir -p "$PROJECTS_DIR"
 echo "Making a Playground folder in $PLAYGROUND_DIR if it doesn't already exist"
 mkdir -p "$PLAYGROUND_DIR"
 
-echo "Removing existing config files/folders"
-
-config_rm .xinitrc
-config_rm .xprofile
-config_rm .bashrc
-config_rm .bash_profile
-
-echo "Symlinking configs"
-config_ln .xinitrc
-config_ln .xprofile
-config_ln .bashrc
-config_ln .bash_profile
+config_rm_ln .xinitrc
+config_rm_ln .xprofile
+config_rm_ln .bashrc
+config_rm_ln .bash_profile
+config_rm_ln .i3blocks.conf
 
 # Special case .config so it is just overwriting the configs in the repo instead of removing extras.
 for filename in $DOTFILES/.config/*; do

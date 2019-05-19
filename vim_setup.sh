@@ -3,9 +3,7 @@ set -e
 source ./utils.sh
 
 config_rm .vim
-config_rm .vimrc
-
-config_ln .vimrc
+config_rm_ln .vimrc
 
 if [[ $( cmd_exists pacman ) ]]; then
     pacman_install neovim vim

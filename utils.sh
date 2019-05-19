@@ -3,7 +3,7 @@
 DOTFILES=$HOME/dotfiles
 if [ ! -d "$DOTFILES" ]; then
 	echo "Missing dotfiles directory. Try git cloning"
-	exit
+    exit
 fi
 
 PROJECTS_DIR=$HOME/projects
@@ -19,8 +19,13 @@ config_ln () {
 	ln -sf $DOTFILES/$1 ~/$1
 }
 
+config_rm_ln () {
+    config_rm $1
+    config_ln $1
+}
+
 cmd_exists() {
-    if [[ $( type $1 > /dev/null ) ]]; then
+    if [[ $( type $1 2>&1 > /dev/null ) ]]; then
         echo 1
     else
         echo 0
