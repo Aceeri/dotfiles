@@ -8,6 +8,7 @@ mkdir -p "$PROJECTS_DIR"
 echo "Making a Playground folder in $PLAYGROUND_DIR if it doesn't already exist"
 mkdir -p "$PLAYGROUND_DIR"
 
+config_rm_ln .xbindkeysrc
 config_rm_ln .xinitrc
 config_rm_ln .xprofile
 config_rm_ln .bashrc
