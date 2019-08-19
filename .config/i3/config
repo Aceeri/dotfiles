@@ -156,6 +156,7 @@ workspace $web output $secondary
 assign [class="web"] $web
 assign [class="Navigator"] $web
 assign [class="Firefox"] $web
+assign [class="firefox"] $web
 assign [class="Chromium"] $web
 assign [class="Google-chrome-beta"] $web
 
