@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 set -e
-source ./utils.sh
+DOTFILES=$HOME/dotfiles
+source $DOTFILES/utils.sh
 
 # Initialize folders
 echo "Making a Projects folder in $PROJECTS_DIR if it doesn't already exist"
@@ -8,6 +9,7 @@ mkdir -p "$PROJECTS_DIR"
 echo "Making a Playground folder in $PLAYGROUND_DIR if it doesn't already exist"
 mkdir -p "$PLAYGROUND_DIR"
 
+mkdir -p ~/.config/
 config_rm_ln .xbindkeysrc
 config_rm_ln .xinitrc
 config_rm_ln .xprofile
@@ -27,10 +29,10 @@ echo "Has pacman: $( cmd_exists pacman )"
 echo "Has brew (TODO: support this): $( cmd_exists brew )"
 
 echo "Setting up vim/neovim"
-./vim_setup.sh
+bash $DOTFILES/vim_setup.sh
 
 echo "Setting up tmux"
-./tmux_setup.sh
+bash $DOTFILES/tmux_setup.sh
 
 echo "Misc. setup"
-./misc_setup.sh
+bash $DOTFILES/misc_setup.sh

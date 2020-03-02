@@ -1,11 +1,6 @@
-#/bin/sh
+#/bin/bash
 
 DOTFILES=$HOME/dotfiles
-if [ ! -d "$DOTFILES" ]; then
-	echo "Missing dotfiles directory. Try git cloning"
-    exit
-fi
-
 PROJECTS_DIR=$HOME/projects
 PLAYGROUND_DIR=$HOME/play
 
@@ -25,10 +20,11 @@ config_rm_ln () {
 }
 
 cmd_exists() {
-    if [[ $( type $1 2>&1 > /dev/null ) ]]; then
-        echo 1
+    #if [[ $( type $1 2>&1 > /dev/null ) ]]; then
+    if [[ $( command -v $1 ) ]]; then
+        echo "exists";
     else
-        echo 0
+        >&2 echo "does not exist: $1";
     fi
 }
 

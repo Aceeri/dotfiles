@@ -1,6 +1,7 @@
-#/bin/sh
+#/bin/bash
 set -e
-source ./utils.sh
+DOTFILES=$HOME/dotfiles
+source $DOTFILES/utils.sh
 
 config_rm .vim
 config_rm_ln .vimrc

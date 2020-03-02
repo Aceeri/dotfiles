@@ -1,6 +1,7 @@
-#/bin/sh
+#/bin/bash
 set -e
-source ./utils.sh
+DOTFILES=$HOME/dotfiles
+source $DOTFILES/utils.sh
 
 if [[ $( cmd_exists pacman ) ]]; then
     pacman_install ripgrep
