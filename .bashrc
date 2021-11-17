@@ -17,3 +17,6 @@ export FZF_CTRL_R_COMMAND="$FZF_DEFAULT_COMMAND"
 FZF_DIR=/usr/share/fzf/
 [ -f $FZF_DIR/key-bindings.bash ] && source $FZF_DIR/key-bindings.bash
 [ -f $FZF_DIR/completion.bash ] && source $FZF_DIR/completion.bash
+. "$HOME/.cargo/env"
+
+export GPG_TTY=$(tty)
